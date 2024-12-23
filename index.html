@@ -103,7 +103,7 @@
             const targetDate = new Date("2025-01-22");
             const currentDate = new Date();
             const diffTime = targetDate - currentDate;
-            const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const daysLeft = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             document.getElementById("days-left").innerText = `Days Left: ${daysLeft} 🎉`;
         }
 
@@ -169,7 +169,7 @@
         // Initial call
         updateDaysLeft();
         // Update days left every minute
-        setInterval(updateDaysLeft, 60000);
+        setInterval(updateDaysLeft, 6000);
     </script>
 </body>
 </html>
