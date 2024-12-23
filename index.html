@@ -10,32 +10,34 @@
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden;
+            background-image: linear-gradient(rgb(177, 176, 176), rgba(0, 0, 0, 0.5)),url('image.jpg');
+            
+            background-position: center; /* Centers the image */
+            
         }
 
         video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
+            width: 150%;
+            height: 180vh;
+            display: block;
+            max-width: 100%; /* Optional: limits the width of the video */
+            max-height: 80%; 
+        }
+
+        .days-left {
+            background: rgba(176, 37, 37, 0.8);
+            padding: 20px;
+            font-size: 2rem;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .container {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        h1 {
-            font-size: 3rem;
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            padding: 20px;
         }
 
         button {
@@ -54,19 +56,28 @@
     </style>
 </head>
 <body>
-    <video autoplay loop muted>
-        <source src="background-video.mp4" type="video/mp4">
+    <audio autoplay loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <video autoplay loop>
+        <source src="video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
+    <div class="days-left" id="days-left">
+        Days Left: Calculating...
+    </div>
+
     <div class="container">
-        <h1 id="days-left"></h1>
-        <p>Counter: <span id="click-counter">0</span></p>
-        <button onclick="incrementCounter()">Click Me!</button>
+        
+        <button onclick="incrementCounter()">Blessings🎊</button>
+        <p>Show Us Some love❤️! 
+            <p>Love count <span id="click-counter">0</span></p></p>
     </div>
 
     <script>
-        // Calculate days left from 22nd January, 2025
+        
         function updateDaysLeft() {
             const targetDate = new Date("2025-01-22");
             const currentDate = new Date();
@@ -75,7 +86,6 @@
             document.getElementById("days-left").innerText = `Days Left: ${daysLeft}`;
         }
 
-        // Counter functionality
         let counter = 0;
         function incrementCounter() {
             counter++;
