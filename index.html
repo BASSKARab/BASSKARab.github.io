@@ -82,7 +82,7 @@
         <source src="m31.mp3" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
-    <video  preload="auto" autoplay loop muted>
+    <video  id="myVideo" preload="auto" autoplay loop muted>
         <source src="video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -136,7 +136,7 @@
         }
        
         const playButton = document.getElementById("body");
-  
+        const myVideo = document.getElementById("myVideo");
         const message = document.getElementById("message");
 
     playButton.addEventListener("click", function() {
@@ -146,7 +146,26 @@
         }).catch((error) => {
         console.error("Audio play failed:", error);
         });
-  });
+        myVideo.play().then(() => {
+        console.log("Video is playing!");
+        }).catch((error) => {
+        console.error("Video play failed:", error);
+        });
+        
+
+        });
+        window.addEventListener("scroll", function() {
+            myAudio.play().then(() => {
+        console.log("Audio is playing!");
+        }).catch((error) => {
+        console.error("Audio play failed:", error);
+        });
+        myVideo.play().then(() => {
+        console.log("Video is playing!");
+        }).catch((error) => {
+        console.error("Video play failed:", error);
+        });
+    });
         // Initial call
         updateDaysLeft();
         // Update days left every minute
