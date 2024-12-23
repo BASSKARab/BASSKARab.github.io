@@ -34,6 +34,8 @@
 
         .container {
             display: flex;
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
@@ -53,28 +55,46 @@
         button:hover {
             background: #e74c3c;
         }
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 2rem;
+            animation: float 3s ease-out forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(1.5);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- <audio autoplay loop>
-        <source src="background-music.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio> -->
-    <video autoplay loop muted>
-        <source src="video 1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
     <div class="days-left" id="days-left">
         Days Left: Calculating...
     </div>
+    <audio autoplay loop>
+        <source src="m3.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    <video autoplay loop muted>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    
 
     <div class="container">
         
         
         <p>Show Us Some love❤️! </p>
-            <button onclick="incrementCounter()">Blessings🎊</button>
-            <p>Love count <span id="click-counter">0</span></p>
+            <button onclick="createHeart()">Blessings🎊</button>
+            <!-- <p>Love count <span id="click-counter">0</span></p> -->
     </div>
 
     <script>
@@ -84,15 +104,30 @@
             const currentDate = new Date();
             const diffTime = targetDate - currentDate;
             const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById("days-left").innerText = `Days Left: ${daysLeft}`;
+            document.getElementById("days-left").innerText = `Days Left: ${daysLeft} 🎉`;
         }
 
         let counter = 0;
         function incrementCounter() {
             counter++;
             document.getElementById("click-counter").innerText = counter;
+            createHeart();
+            
         }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = '80vh';
+            heart.innerText = ' 💕❤️💕❤️💕  ';
+            document.body.appendChild(heart);
+            
 
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
         // Initial call
         updateDaysLeft();
         // Update days left every minute
