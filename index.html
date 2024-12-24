@@ -100,7 +100,7 @@
     <script>
         
         function updateDaysLeft() {
-            const targetDate = new Date("2025-01-22");
+            const targetDate = new Date("2025-01-22, 23:59:59");
             const currentDate = new Date();
             const diffTime = targetDate - currentDate;
             const daysLeft = Math.floor(diffTime / (1000 * 60 * 60 * 24));
